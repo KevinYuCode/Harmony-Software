@@ -1,0 +1,278 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+@source "../../../packages/ui/src";
+@source "../components";
+@source "../hooks";
+
+@theme {
+  /* Brand colors for Tailwind utilities */
+  --color-primary: #d32f2f;
+  --color-primary-dark: #b71c1c;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #212121;
+  --color-secondary-foreground: #ffffff;
+  --color-accent: #ffd600;
+  --color-accent-muted: #fbc02d;
+  --color-accent-foreground: #212121;
+  --color-muted: #f5f0e0;
+  --color-muted-foreground: #4a4a4a;
+  /* Card = lighter cream-yellow (elevated), like a lighter panel on dark UI */
+  --color-card: #fffef5;
+  --color-card-foreground: #212121;
+  --color-border: #ddd2b4;
+  --color-ring: #d32f2f;
+  --color-foreground: #212121;
+  /* Page canvas = slightly deeper warm yellow (outer tone) */
+  --color-background: #e8e0c4;
+  /* Menu / panels — same family as cards; tiny gold lift for depth */
+  --color-surface-warm: color-mix(in srgb, #fffef5 88%, #ffd600 12%);
+
+  /* Accordion animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+:root {
+  /* Sticky bar: matches `Navbar` — used for first-screen hero height (tighter on small screens) */
+  --nav-height: 3.75rem;
+
+  /* Brand: match site red + warm surfaces (shadcn tokens) */
+  --primary: #d32f2f;
+  --primary-dark: #b71c1c;
+  --secondary: #212121;
+  --tertiary: #ffd600;
+  --neutral: #fbc02d;
+  /* Two-tone yellow: page (deeper) vs cards/panels (lighter cream) */
+  --bg: #FFEFD5;
+  --card-bg: #fffef5;
+  --surface-warm-tint: color-mix(in srgb, var(--card-bg) 88%, var(--tertiary) 12%);
+  --surface-warm: color-mix(in srgb, var(--surface-warm-tint) 92%, #ffffff 8%);
+  --text: #212121;
+  --text-muted: #4a4a4a;
+  --border: #ddd2b4;
+
+  /* Computed colors for Tailwind arbitrary values */
+  --buffet-border: color-mix(in srgb, var(--secondary) 38%, var(--border) 62%);
+  --feature-icon-bg: color-mix(in srgb, var(--neutral) 32%, var(--bg) 68%);
+
+  --font-cjk-trad: "Noto Sans TC", "PingFang TC", "Hiragino Sans TC",
+    "Microsoft JhengHei", serif;
+
+  --background: #e8e0c4;
+
+  --foreground: #212121;
+
+  /* Light cream/yellow (matches --color-card in @theme); shadcn default was pure white */
+  --card: var(--card-bg);
+
+  --card-foreground: #212121;
+
+  --popover: var(--card-bg);
+
+  --popover-foreground: #212121;
+
+  --primary-foreground: #ffffff;
+
+  --secondary-foreground: #ffffff;
+
+  --muted: oklch(0.97 0 0);
+
+  --muted-foreground: oklch(0.556 0 0);
+
+  /* Brand yellow — drives badges, underlines, CTA tints (maps via @theme inline → --color-accent) */
+  --accent: #ffd600;
+
+  --accent-foreground: #212121;
+
+  --destructive: oklch(0.577 0.245 27.325);
+
+  --input: oklch(0.922 0 0);
+
+  --ring: #d32f2f;
+
+  --chart-1: oklch(0.87 0 0);
+
+  --chart-2: oklch(0.556 0 0);
+
+  --chart-3: oklch(0.439 0 0);
+
+  --chart-4: oklch(0.371 0 0);
+
+  --chart-5: oklch(0.269 0 0);
+
+  --radius: 0.625rem;
+
+  --sidebar: #ffefd5;
+
+  --sidebar-foreground: #212121;
+
+  --sidebar-primary: #d32f2f;
+
+  --sidebar-primary-foreground: #ffffff;
+
+  --sidebar-accent: #f5f0e0;
+
+  --sidebar-accent-foreground: #212121;
+
+  --sidebar-border: #ddd2b4;
+
+  --sidebar-ring: #d32f2f;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --nav-height: 5.25rem;
+  }
+}
+
+/* Headlines: Times / Times New Roman (system fonts). */
+@layer utilities {
+  .font-headline {
+    font-family: var(--font-headline);
+  }
+
+  /* Subtle primary-tinted lift for promo cards (specials section) */
+  .shadow-specials-glow {
+    box-shadow:
+      0 1px 2px color-mix(in srgb, var(--primary) 6%, transparent),
+      0 4px 18px color-mix(in srgb, var(--primary) 10%, transparent);
+  }
+
+  .shadow-specials-glow-hover {
+    box-shadow:
+      0 2px 6px color-mix(in srgb, var(--primary) 8%, transparent),
+      0 8px 26px color-mix(in srgb, var(--primary) 13%, transparent);
+  }
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  body {
+    /* Expose Next.js-injected font variables so child selectors can use them */
+    --font-body: var(--font-jakarta);
+    --font-title: "Segoe UI", "Segoe UI Historic", "Segoe WP", system-ui,
+      -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-label: var(--font-title);
+    --font-headline: Times, "Times New Roman", Georgia, serif;
+
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body), sans-serif;
+    -webkit-font-smoothing: antialiased;
+    @apply bg-background text-foreground;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}

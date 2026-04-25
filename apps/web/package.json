@@ -1,27 +1,41 @@
 {
   "name": "web",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "check-types": "tsc --noEmit"
+    "lint": "eslint --max-warnings 0",
+    "check-types": "next typegen && tsc --noEmit",
+    "deploy": "wrangler pages deploy out --project-name=super-wok-software"
   },
   "dependencies": {
-    "next": "16.2.4",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "@base-ui/react": "^1.4.1",
+    "@harmony/ui": "workspace:*",
+    "@harmony/utils": "workspace:*",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "embla-carousel-react": "^8.6.0",
+    "lucide-react": "^1.11.0",
+    "next": "16.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "shadcn": "^4.4.0",
+    "tailwind-merge": "^3.5.0",
+    "tw-animate-css": "^1.4.0"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.4",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@tailwindcss/postcss": "^4.2.2",
+    "@types/node": "^22.15.3",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "eslint": "^9.39.1",
+    "tailwindcss": "^4.2.2",
+    "typescript": "5.9.2",
+    "wrangler": "^4.85.0"
   }
 }
