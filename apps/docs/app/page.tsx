@@ -1,5 +1,7 @@
+"use client";
+
 import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
+import { Button } from "@harmony/ui/components/button";
 import styles from "./page.module.css";
 
 type Props = Omit<ImageProps, "src"> & {
@@ -63,7 +65,12 @@ export default function Home() {
             Read our docs
           </a>
         </div>
-        <Button appName="docs" className={styles.secondary}>
+        <Button
+          type="button"
+          variant="secondary"
+          className={styles.secondary}
+          onClick={() => alert("Hello from your docs app!")}
+        >
           Open alert
         </Button>
       </main>

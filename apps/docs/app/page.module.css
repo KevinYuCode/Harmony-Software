@@ -10,7 +10,9 @@
   grid-template-rows: 20px 1fr 20px;
   align-items: center;
   justify-items: center;
-  min-height: 100svh;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
   padding: 80px;
   gap: 64px;
   font-synthesis: none;
@@ -97,7 +99,7 @@ button.secondary {
   font-family: var(--font-geist-sans);
   border: 1px solid transparent;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
-  cursor: pointer;
+  cursor: auto;
   display: flex;
   align-items: center;
   justify-content: center;
