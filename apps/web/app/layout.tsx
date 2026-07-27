@@ -4,6 +4,8 @@ import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navbar } from "./components/navbar";
 import { Footer } from "./components/footer";
+import { OrderListProvider } from "@/app/components/order-list/order-list-context";
+import { OrderListButton } from "@/app/components/order-list/order-list-button";
 import { cn } from "@/lib/utils";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
@@ -161,11 +163,14 @@ export default function RootLayout({
       </head>
       <body className={jakarta.variable}>
         <TooltipProvider>
-          <div className="flex flex-col min-h-screen bg-[var(--bg)] text-left">
-            <Navbar />
-            {children}
-            <Footer />
-          </div>
+          <OrderListProvider>
+            <div className="flex flex-col min-h-screen bg-[var(--bg)] text-left">
+              <Navbar />
+              {children}
+              <Footer />
+            </div>
+            <OrderListButton />
+          </OrderListProvider>
         </TooltipProvider>
       </body>
     </html>

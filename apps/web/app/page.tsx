@@ -30,7 +30,7 @@ const ctaButtonClassName =
 
 /** One scale for the hero h1 so both lines match at every breakpoint (esp. mobile). */
 const heroH1TextSize =
-  "text-[clamp(1.9rem,5.2vw,3.4rem)] sm:text-[clamp(2.4rem,5.5vw,4rem)] lg:text-[clamp(2.8rem,5.5vw,4.5rem)]";
+  "text-[clamp(2.35rem,9vw,3.4rem)] sm:text-[clamp(2.4rem,5.5vw,4rem)] lg:text-[clamp(2.8rem,5.5vw,4.5rem)]";
 /** In-page section headings (Specials, Menu preview). */
 const sectionH2TextSize = "text-[clamp(2rem,3.5vw,3rem)]";
 /** About + dark CTA block title scale. */
@@ -98,9 +98,9 @@ export default function Home() {
     <>
       {/* Landing: nav + this block = first viewport; hero + cards vertically centered in the column */}
       <div className="flex min-h-[calc(100dvh_-_var(--nav-height))] flex-col text-left">
-        <div className="flex h-[85dvh] shrink-0 flex-col justify-center gap-10 min-h-0 max-w-[1440px] w-full mx-auto px-3 sm:px-4 lg:px-6 pt-2 pb-10 lg:pt-3 lg:pb-[25px]">
+        <div className="flex flex-col justify-start gap-10 min-h-0 max-w-[1440px] w-full mx-auto px-3 sm:px-4 lg:px-6 pt-2 pb-10 lg:h-[85dvh] lg:shrink-0 lg:justify-center lg:pt-3 lg:pb-[25px]">
         <section className="shrink-0">
-          <div className="my-10 grid w-full min-w-0 grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(280px,640px)] lg:gap-12 lg:items-stretch">
+          <div className="my-4 grid w-full min-w-0 grid-cols-1 gap-10 lg:my-10 lg:grid-cols-[minmax(0,1fr)_minmax(280px,640px)] lg:gap-12 lg:items-stretch">
           <div className="flex w-full min-w-0 flex-col gap-6">
             <div className="flex flex-col gap-2">
               <p className="font-[family-name:var(--font-label)] text-xs font-semibold text-primary uppercase tracking-[0.08em] sm:text-sm md:text-base">
@@ -119,7 +119,7 @@ export default function Home() {
                 </span>
               </h1>
             </div>
-            <p className="font-[family-name:var(--font-body)] w-full min-w-0 text-[1.05rem] leading-[1.7] text-[#555]">
+            <p className="font-[family-name:var(--font-body)] w-full min-w-0 text-sm leading-[1.6] text-[#555] sm:text-[1.05rem] sm:leading-[1.7]">
               Family-owned and serving Tillsonburg delicious Chinese food
               since 1996. From classic Chinese dishes to hearty Canadian
               favourites — dine in or take out, made fresh with care every
@@ -138,7 +138,7 @@ export default function Home() {
                 </a>
               </Button>
             </div>
-            <div className="flex flex-wrap justify-center gap-2 md:justify-start">
+            <div className="flex flex-wrap justify-start gap-2">
               <Badge variant="outline" className={heroBuffetBadgeClassName}>
                 <UtensilsCrossed className={badgeIconClassName} aria-hidden />
                 All-You-Can-Eat Buffet
@@ -333,29 +333,29 @@ export default function Home() {
             A selection of our most-loved Chinese and Canadian classics
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-5 mb-12">
           {menuItems.map((item) => (
             <Link
               key={item.name}
               href={`/menu#${item.id}`}
               className="rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
-              <Card className="h-full items-center text-center transition-shadow hover:shadow-md">
-                <CardHeader className="w-full items-center justify-items-center pb-2">
-                  <div className="relative mb-2 size-44 shrink-0">
+              <Card className="h-full items-center gap-3 py-4 text-center transition-shadow hover:shadow-md lg:gap-6 lg:py-6">
+                <CardHeader className="w-full items-center justify-items-center gap-1 px-3 pb-2 lg:px-6">
+                  <div className="relative mb-2 size-24 shrink-0 lg:size-44">
                     <Image
                       src={item.image}
                       alt={item.name}
                       fill
-                      sizes="176px"
+                      sizes="(min-width: 1024px) 176px, 96px"
                       className="object-contain"
                     />
                   </div>
-                  <CardTitle className="line-clamp-2 min-h-11">{item.name}</CardTitle>
-                  <CardDescription className="line-clamp-2 min-h-10">{item.description}</CardDescription>
+                  <CardTitle className="line-clamp-2 min-h-9 text-sm lg:min-h-11 lg:text-base">{item.name}</CardTitle>
+                  <CardDescription className="line-clamp-2 min-h-8 text-xs lg:min-h-10 lg:text-sm">{item.description}</CardDescription>
                 </CardHeader>
-                <CardContent className="mt-auto">
-                  <span className="font-[family-name:var(--font-label)] text-base font-bold text-primary">
+                <CardContent className="mt-auto px-3 lg:px-6">
+                  <span className="font-[family-name:var(--font-label)] text-sm font-bold text-primary lg:text-base">
                     {item.price}
                   </span>
                 </CardContent>

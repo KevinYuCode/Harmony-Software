@@ -36,6 +36,7 @@ import {
 import { getAllMenuItems, type MenuItem } from "@harmony/utils/menu";
 import { DINE_IN_ITEMS } from "@harmony/utils/prices";
 import { ComboBuilder } from "@/app/components/combo-builder";
+import { OrderListItemControl } from "@/app/components/order-list/order-list-item-control";
 import { OrderNowButton } from "@/app/components/order-now-button";
 
 const STORE_ADDRESS_LINE = "91 Broadway Street, Tillsonburg, ON";
@@ -441,6 +442,9 @@ export default function MenuPage() {
                             </ul>
                           </CardContent>
                         )}
+                        <CardContent>
+                          <OrderListItemControl item={item} />
+                        </CardContent>
                       </Card>
                     ))}
                   </div>
@@ -477,6 +481,7 @@ export default function MenuPage() {
                             {item.description}
                           </span>
                         )}
+                        <OrderListItemControl item={item} className="mt-1.5 self-start" />
                       </div>
                     ))}
                   </div>
