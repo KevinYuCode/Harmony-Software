@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Minus, Plus } from "lucide-react";
 import { Button } from "@harmony/ui/components/button";
 import { Input } from "@harmony/ui/components/input";
 import {
@@ -14,6 +15,7 @@ import {
   AlertDialogCancel,
 } from "@harmony/ui/components/alert-dialog";
 import type { MenuItem } from "@harmony/utils/menu";
+import { useOrderList } from "@/app/components/order-list/order-list-context";
 
 const STORAGE_KEY = "harmony-combo-tabs";
 const MAX_SELECTIONS = 5;
@@ -82,6 +84,7 @@ export function ComboBuilder({ item }: { item: MenuItem }) {
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
   const [clearAllOpen, setClearAllOpen] = useState(false);
   const isFirstTabsEffect = useRef(true);
+  const { getQuantity, addItem, incrementQuantity, decrementQuantity } = useOrderList();
 
   // Load any saved tabs from this browser once on mount.
   useEffect(() => {
@@ -161,6 +164,17 @@ export function ComboBuilder({ item }: { item: MenuItem }) {
       })
     );
   }
+
+  const activeIndex = tabs.indexOf(activeTab);
+  const isComboComplete = activeTab.selected.length === MAX_SELECTIONS;
+  const comboOrderId = `combo-${activeTab.id}`;
+  const comboOrderName = `${tabLabel(activeTab, activeIndex)} — ${activeTab.selected
+    .map((number) => {
+      const name = comboItems.find((c) => c.number === number)?.name;
+      return name ? `[${number}] ${name}` : `[${number}]`;
+    })
+    .join(", ")}`;
+  const comboOrderQuantity = getQuantity(comboOrderId);
 
   return (
     <div className="flex flex-col gap-4">
@@ -304,6 +318,63 @@ export function ComboBuilder({ item }: { item: MenuItem }) {
           );
         })}
       </div>
+
+      {/* Add completed combo to order list */}
+      {isComboComplete && (
+        <div className="flex items-center justify-between gap-3 rounded-lg border border-primary/40 bg-primary/5 px-3 py-2.5">
+          <div className="min-w-0">
+            <p className="text-sm font-semibold text-foreground">
+              {tabLabel(activeTab, activeIndex)} ready
+            </p>
+            <p className="truncate text-xs text-muted-foreground">{comboOrderName}</p>
+          </div>
+          {comboOrderQuantity === 0 ? (
+            <Button
+              type="button"
+              size="sm"
+              className="shrink-0 cursor-pointer border-accent-muted bg-accent text-accent-foreground hover:bg-accent/80"
+              variant="outline"
+              onClick={() =>
+                addItem({ id: comboOrderId, name: comboOrderName, price: item.price })
+              }
+            >
+              <Plus className="size-3.5" />
+              Add to list
+            </Button>
+          ) : (
+            <div className="flex shrink-0 items-center gap-1.5 rounded-full border border-sky-300 bg-sky-50 py-0.5 pl-1 pr-2 dark:border-sky-800 dark:bg-sky-950">
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon-xs"
+                aria-label={`Decrease quantity of ${comboOrderName}`}
+                className="cursor-pointer hover:bg-sky-100 dark:hover:bg-sky-900"
+                onClick={() => decrementQuantity(comboOrderId)}
+              >
+                <Minus className="size-3 text-sky-700 dark:text-sky-300" />
+              </Button>
+              <span className="min-w-3.5 text-center text-xs font-bold text-sky-700 dark:text-sky-300">
+                {comboOrderQuantity}
+              </span>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon-xs"
+                aria-label={`Increase quantity of ${comboOrderName}`}
+                className="cursor-pointer hover:bg-sky-100 dark:hover:bg-sky-900"
+                onClick={() =>
+                  incrementQuantity({ id: comboOrderId, name: comboOrderName, price: item.price })
+                }
+              >
+                <Plus className="size-3 text-sky-700 dark:text-sky-300" />
+              </Button>
+              <span className="text-xs font-medium text-sky-700 dark:text-sky-300">
+                on your list
+              </span>
+            </div>
+          )}
+        </div>
+      )}
 
       <p className="font-[family-name:var(--font-body)] text-[0.8rem] italic leading-relaxed text-muted-foreground">
         This is just for your convenience to keep track of what you want — it does not place

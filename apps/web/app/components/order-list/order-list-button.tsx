@@ -5,7 +5,6 @@ import { ClipboardList, Minus, Plus, RotateCcw, StickyNote, Trash2, XIcon } from
 import { Button } from "@harmony/ui/components/button";
 import { Badge } from "@harmony/ui/components/badge";
 import { Textarea } from "@harmony/ui/components/textarea";
-import { ScrollArea } from "@harmony/ui/components/scroll-area";
 import {
   Popover,
   PopoverClose,
@@ -74,7 +73,7 @@ export function OrderListButton() {
           align="end"
           sideOffset={12}
           onInteractOutside={(e) => e.preventDefault()}
-          className="flex max-h-[min(32rem,var(--radix-popover-content-available-height))] w-[calc(100vw-2.5rem)] max-w-sm flex-col overflow-hidden p-0 sm:w-96"
+          className="flex max-h-[min(85dvh,32rem)] w-[calc(100vw-2.5rem)] max-w-sm flex-col overflow-hidden p-0 sm:w-96"
         >
           <PopoverHeader className="shrink-0 gap-1 p-3 pb-2.5">
             <PopoverTitle className="flex items-center justify-between text-base">
@@ -116,7 +115,7 @@ export function OrderListButton() {
             </p>
           ) : (
             <>
-              <ScrollArea className="min-h-0 flex-1 border-t border-border px-3">
+              <div className="min-h-0 flex-1 overflow-y-auto border-t border-border px-3">
                 <ul className="flex flex-col divide-y divide-border">
                   {items.map((item) => (
                     <OrderListRow
@@ -133,7 +132,7 @@ export function OrderListButton() {
                     />
                   ))}
                 </ul>
-              </ScrollArea>
+              </div>
               <div className="flex shrink-0 flex-col gap-1.5 border-t border-border bg-muted/50 p-3">
                 <div className="flex flex-col gap-0.5">
                   <div className="flex items-center justify-between text-xs text-muted-foreground">

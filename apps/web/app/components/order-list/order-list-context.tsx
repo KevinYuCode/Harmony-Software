@@ -1,20 +1,20 @@
 "use client";
 
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import type { MenuItem, MenuItemId } from "@harmony/utils/menu";
 
 const STORAGE_KEY = "harmony-order-list";
 
 export type OrderListItem = {
-  id: MenuItemId;
+  id: string;
   name: string;
   price: number;
   quantity: number;
   notes: string;
 };
 
-/** Everything needed to add or bump a line — satisfied by a full `MenuItem` or an existing `OrderListItem`. */
-type AddableItem = Pick<MenuItem, "id" | "name" | "price">;
+/** Everything needed to add or bump a line — a catalog `MenuItem`, an existing `OrderListItem`,
+ * or a synthetic entry like a built combo (id doesn't have to be a real `MenuItemId`). */
+type AddableItem = { id: string; name: string; price: number };
 
 type OrderListContextValue = {
   items: OrderListItem[];
