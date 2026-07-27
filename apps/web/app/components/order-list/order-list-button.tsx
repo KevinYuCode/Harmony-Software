@@ -25,6 +25,8 @@ import {
   AlertDialogCancel,
 } from "@harmony/ui/components/alert-dialog";
 import { useOrderList, type OrderListItem } from "@/app/components/order-list/order-list-context";
+import { OrderNowButton } from "@/app/components/order-now-button";
+import { HST_RATE } from "@harmony/utils/prices";
 
 function formatPrice(price: number): string {
   return `$${price.toFixed(2)}`;
@@ -44,6 +46,10 @@ export function OrderListButton() {
   const [open, setOpen] = useState(false);
   const [clearConfirmOpen, setClearConfirmOpen] = useState(false);
   const [notesOpenFor, setNotesOpenFor] = useState<string | null>(null);
+
+  const subtotal = totalPrice;
+  const tax = subtotal * HST_RATE;
+  const grandTotal = subtotal + tax;
 
   return (
     <>
@@ -68,9 +74,9 @@ export function OrderListButton() {
           align="end"
           sideOffset={12}
           onInteractOutside={(e) => e.preventDefault()}
-          className="w-[calc(100vw-2.5rem)] max-w-sm p-0 sm:w-96"
+          className="flex max-h-[min(32rem,var(--radix-popover-content-available-height))] w-[calc(100vw-2.5rem)] max-w-sm flex-col overflow-hidden p-0 sm:w-96"
         >
-          <PopoverHeader className="gap-1 p-3 pb-2.5">
+          <PopoverHeader className="shrink-0 gap-1 p-3 pb-2.5">
             <PopoverTitle className="flex items-center justify-between text-base">
               Your order list
               <div className="flex items-center gap-0.5">
@@ -110,7 +116,7 @@ export function OrderListButton() {
             </p>
           ) : (
             <>
-              <ScrollArea className="max-h-80 border-t border-border px-3">
+              <ScrollArea className="min-h-0 flex-1 border-t border-border px-3">
                 <ul className="flex flex-col divide-y divide-border">
                   {items.map((item) => (
                     <OrderListRow
@@ -128,15 +134,31 @@ export function OrderListButton() {
                   ))}
                 </ul>
               </ScrollArea>
-              <div className="flex flex-col gap-0.5 border-t border-border bg-muted/50 p-3">
-                <div className="flex items-center justify-between text-sm font-semibold">
-                  <span>Total</span>
-                  <span className="text-primary">{formatPrice(totalPrice)}</span>
+              <div className="flex shrink-0 flex-col gap-1.5 border-t border-border bg-muted/50 p-3">
+                <div className="flex flex-col gap-0.5">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <span>Subtotal</span>
+                    <span>{formatPrice(subtotal)}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <span>Tax (HST 13%)</span>
+                    <span>{formatPrice(tax)}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm font-semibold">
+                    <span>Total</span>
+                    <span className="text-primary">{formatPrice(grandTotal)}</span>
+                  </div>
                 </div>
                 <p className="text-[0.7rem] leading-snug text-muted-foreground">
                   Approximate — final pricing is set by the restaurant when you call in your
                   order.
                 </p>
+                <OrderNowButton
+                  className="h-9 w-full text-sm"
+                  iconClassName="size-4 shrink-0"
+                  align="center"
+                  contentClassName="w-[--radix-dropdown-menu-trigger-width]"
+                />
               </div>
             </>
           )}

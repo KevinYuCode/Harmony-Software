@@ -259,3 +259,6 @@ export const DINE_IN_ITEMS = {
   apple_juice: 2.5,
   orange_juice: 2.5,
 } as const;
+
+/** Ontario HST — applies to all food/drink at this location (Tillsonburg, ON). */
+export const HST_RATE = 0.13;

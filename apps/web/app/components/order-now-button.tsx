@@ -8,6 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@harmony/ui/components/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 const PHONE_LINES = [
   { label: "(519) 842-7007", tel: "tel:+15198427007" },
@@ -19,6 +20,8 @@ interface OrderNowButtonProps {
   variant?: React.ComponentProps<typeof Button>["variant"];
   size?: React.ComponentProps<typeof Button>["size"];
   iconClassName?: string;
+  align?: React.ComponentProps<typeof DropdownMenuContent>["align"];
+  contentClassName?: string;
 }
 
 export function OrderNowButton({
@@ -26,6 +29,8 @@ export function OrderNowButton({
   variant,
   size,
   iconClassName = "size-4 shrink-0",
+  align = "end",
+  contentClassName,
 }: OrderNowButtonProps) {
   return (
     <DropdownMenu>
@@ -35,7 +40,7 @@ export function OrderNowButton({
           Order Now
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="z-[110]">
+      <DropdownMenuContent align={align} className={cn("z-[110]", contentClassName)}>
         {PHONE_LINES.map((line) => (
           <DropdownMenuItem
             key={line.tel}
