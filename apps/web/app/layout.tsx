@@ -19,29 +19,37 @@ const jakarta = Plus_Jakarta_Sans({
 const SITE_URL = "https://harmonyrestaurant.ca";
 const SITE_NAME = "Harmony Restaurant";
 const SITE_DESCRIPTION =
-  "Harmony Restaurant in Tillsonburg, Ontario serves authentic Chinese food and Canadian cuisine. Craving Chinese food in Tillsonburg? Dine in, take out, or get free delivery on orders over $40. Friday all-you-can-eat buffet. Call (519) 842-7007.";
+  "Harmony Restaurant serves Tillsonburg's favourite Chinese food since 1996 — takeout, fast food, dine-in and delivery in Tillsonburg, Ontario, plus an all-you-can-eat buffet. Order at (519) 842-7007.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Chinese & Canadian Food | Tillsonburg, ON`,
+    default: `${SITE_NAME} — Chinese Food Takeout & Delivery | Tillsonburg, ON`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   keywords: [
+    "Chinese food Tillsonburg",
+    "Tillsonburg Chinese food",
     "Chinese restaurant Tillsonburg",
-    "Canadian food Tillsonburg",
-    "Harmony Restaurant",
-    "Chinese food Tillsonburg Ontario",
-    "restaurant Tillsonburg ON",
-    "Friday buffet Tillsonburg",
-    "take out Tillsonburg",
+    "Chinese takeout Tillsonburg",
+    "takeout Tillsonburg",
+    "fast food Tillsonburg",
+    "Chinese food delivery Tillsonburg",
+    "food delivery Tillsonburg",
     "delivery Tillsonburg Ontario",
+    "Chinese food Tillsonburg Ontario",
+    "Harmony Restaurant",
+    "Harmony Chinese Food Restaurant",
+    "Canadian food Tillsonburg",
+    "restaurant Tillsonburg ON",
+    "buffet Tillsonburg",
+    "all you can eat buffet Tillsonburg",
+    "Friday buffet Tillsonburg",
     "L.L.B.O. restaurant Tillsonburg",
     "91 Broadway St Tillsonburg",
-    "all you can eat Tillsonburg",
-    "Chinese food delivery Tillsonburg",
     "Tillsonburg Ontario restaurant",
+    "Chinese food near me",
   ],
   alternates: {
     canonical: SITE_URL,
@@ -51,7 +59,7 @@ export const metadata: Metadata = {
     locale: "en_CA",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — Chinese & Canadian Food | Tillsonburg, ON`,
+    title: `${SITE_NAME} — Chinese Food Takeout & Delivery | Tillsonburg, ON`,
     description: SITE_DESCRIPTION,
     images: [
       {
@@ -64,7 +72,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — Chinese & Canadian Food | Tillsonburg, ON`,
+    title: `${SITE_NAME} — Chinese Food Takeout & Delivery | Tillsonburg, ON`,
     description: SITE_DESCRIPTION,
     images: ["/Dine-1.webp"],
   },
@@ -78,23 +86,36 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
     },
   },
+  other: {
+    "geo.region": "CA-ON",
+    "geo.placename": "Tillsonburg",
+    "geo.position": "42.8667;-80.7333",
+    ICBM: "42.8667, -80.7333",
+  },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Restaurant",
+  "@id": `${SITE_URL}/#restaurant`,
   name: "Harmony Restaurant",
-  alternateName: "Harmony",
+  alternateName: ["Harmony", "Harmony Chinese Food Restaurant", "和諧軒"],
+  description: SITE_DESCRIPTION,
   url: SITE_URL,
   telephone: "+15198427007",
   servesCuisine: ["Chinese", "Canadian"],
   priceRange: "$$",
   hasMenu: `${SITE_URL}/menu`,
+  menu: `${SITE_URL}/menu`,
+  foundingDate: "1996",
+  keywords:
+    "Chinese food, takeout, fast food, delivery, dine-in, all-you-can-eat buffet, Tillsonburg, Ontario",
   address: {
     "@type": "PostalAddress",
     streetAddress: "91 Broadway Street",
     addressLocality: "Tillsonburg",
     addressRegion: "ON",
+    postalCode: "N4G 3P5",
     addressCountry: "CA",
   },
   geo: {
@@ -130,6 +151,11 @@ const jsonLd = {
   },
   paymentAccepted: "Cash",
   currenciesAccepted: "CAD",
+  sameAs: [
+    "https://www.yelp.com/biz/harmony-chinese-food-restaurant-tillsonburg",
+    "https://www.tripadvisor.com/Restaurant_Review-g499299-d769594-Reviews-Harmony_Restaurant-Tillsonburg_Ontario.html",
+    "https://www.yellowpages.ca/bus/Ontario/Tillsonburg/Harmony-Chinese-Restaurant/2722098.html",
+  ],
   image: [
     `${SITE_URL}/Dine-1.webp`,
     `${SITE_URL}/Dine-2.webp`,

@@ -5,10 +5,14 @@ const MENU_URL = "https://harmonyrestaurant.ca/menu";
 export const metadata: Metadata = {
   title: "Menu",
   description:
-    "Browse the full Harmony Restaurant menu — Chinese and Canadian dishes including soups, appetizers, chow mein, fried rice, chicken, beef, shrimp, noodles, Szechuan, and more. Dine in or take out in Tillsonburg, ON.",
+    "Browse the full Harmony Restaurant menu — Chinese and Canadian dishes including soups, appetizers, chow mein, fried rice, chicken, beef, shrimp, noodles, Szechuan, and more. Takeout, fast food, dine-in and delivery in Tillsonburg, ON.",
   keywords: [
     "Harmony menu",
     "Chinese food menu Tillsonburg",
+    "Chinese takeout menu Tillsonburg",
+    "takeout Tillsonburg",
+    "fast food Tillsonburg",
+    "Chinese food delivery Tillsonburg",
     "chow mein Tillsonburg",
     "fried rice Tillsonburg",
     "General Tao chicken Tillsonburg",
