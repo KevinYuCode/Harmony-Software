@@ -169,10 +169,7 @@ export function ComboBuilder({ item }: { item: MenuItem }) {
   const isComboComplete = activeTab.selected.length === MAX_SELECTIONS;
   const comboOrderId = `combo-${activeTab.id}`;
   const comboOrderName = `${tabLabel(activeTab, activeIndex)} — ${activeTab.selected
-    .map((number) => {
-      const name = comboItems.find((c) => c.number === number)?.name;
-      return name ? `[${number}] ${name}` : `[${number}]`;
-    })
+    .map((number) => `[${number}]`)
     .join(", ")}`;
   const comboOrderQuantity = getQuantity(comboOrderId);
 
