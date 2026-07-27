@@ -125,13 +125,16 @@ export default function Home() {
               favourites — dine in or take out, made fresh with care every
               time.
             </p>
-            <div className="flex gap-3 flex-wrap sm:gap-4">
+            <div className="w-full max-w-[520px] max-sm:grid max-sm:grid-cols-2 max-sm:items-stretch max-sm:gap-2 sm:flex sm:min-w-0 sm:flex-nowrap sm:items-center sm:gap-3">
               <OrderNowButton
                 variant="secondary"
-                className={ctaButtonClassName}
+                className="h-10 w-full min-w-0 max-sm:px-2.5 max-sm:text-xs sm:w-auto sm:shrink-0"
                 iconClassName="size-4 shrink-0"
               />
-              <Button asChild className={ctaButtonClassName}>
+              <Button
+                asChild
+                className="h-10 w-full min-w-0 max-sm:px-2.5 max-sm:text-xs sm:w-auto sm:shrink-0"
+              >
                 <a href="/menu">
                   <FileText className="size-4 shrink-0" strokeWidth={2} aria-hidden />
                   Menu
@@ -226,7 +229,10 @@ export default function Home() {
                 </div>
                 <div>
                   <CardTitle>Lunch Buffet</CardTitle>
-                  <CardDescription>All-you-can-eat · Kids half price</CardDescription>
+                  <CardDescription>
+                    All-you-can-eat · Kids half price · Free on your birthday
+                    (min. 4 dine-in)
+                  </CardDescription>
                 </div>
               </div>
             </CardHeader>
