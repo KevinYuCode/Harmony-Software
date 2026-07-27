@@ -4,15 +4,12 @@ import { useAuthStore } from '@/stores/auth.store'
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarTrigger,
 } from '@harmony/ui/components/sidebar'
 import logo from '@/assets/harmony-logo.png'
 
@@ -46,7 +43,6 @@ export function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
@@ -83,9 +79,6 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="flex-row items-center justify-start">
-        <SidebarTrigger className="shrink-0" />
-      </SidebarFooter>
     </Sidebar>
   )
 }

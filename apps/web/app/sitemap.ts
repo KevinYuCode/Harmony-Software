@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next";
 
-const SITE_URL = "https://superwokrestaurant.ca";
+const SITE_URL = "https://harmonyrestaurant.ca";
 
 export const dynamic = "force-static";
 

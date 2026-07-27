@@ -14,49 +14,55 @@ const jakarta = Plus_Jakarta_Sans({
   weight: ["400", "500", "600"],
 });
 
-const SITE_URL = "https://superwokrestaurant.ca";
-const SITE_NAME = "Super Wok Restaurant";
+const SITE_URL = "https://harmonyrestaurant.ca";
+const SITE_NAME = "Harmony Restaurant";
 const SITE_DESCRIPTION =
-  "Super Wok Restaurant in Aylmer, Ontario serves authentic Chinese and Canadian cuisine. Dine in, take out, or get free delivery on orders over $40. Friday all-you-can-eat buffet. Call (519) 765-3184.";
+  "Harmony Restaurant in Tillsonburg, Ontario serves authentic Chinese food and Canadian cuisine. Craving Chinese food in Tillsonburg? Dine in, take out, or get free delivery on orders over $40. Friday all-you-can-eat buffet. Call (519) 842-7007.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Chinese & Canadian Food | Aylmer, ON`,
+    default: `${SITE_NAME} — Chinese & Canadian Food | Tillsonburg, ON`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
   keywords: [
-    "Chinese restaurant Aylmer",
-    "Canadian food Aylmer",
-    "Super Wok Restaurant",
-    "Chinese food Aylmer Ontario",
-    "restaurant Aylmer ON",
-    "Friday buffet Aylmer",
-    "take out Aylmer",
-    "delivery Aylmer Ontario",
-    "L.L.B.O. restaurant Aylmer",
-    "287 Talbot St Aylmer",
+    "Chinese restaurant Tillsonburg",
+    "Canadian food Tillsonburg",
+    "Harmony Restaurant",
+    "Chinese food Tillsonburg Ontario",
+    "restaurant Tillsonburg ON",
+    "Friday buffet Tillsonburg",
+    "take out Tillsonburg",
+    "delivery Tillsonburg Ontario",
+    "L.L.B.O. restaurant Tillsonburg",
+    "91 Broadway St Tillsonburg",
+    "all you can eat Tillsonburg",
+    "Chinese food delivery Tillsonburg",
+    "Tillsonburg Ontario restaurant",
   ],
+  alternates: {
+    canonical: SITE_URL,
+  },
   openGraph: {
     type: "website",
     locale: "en_CA",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — Chinese & Canadian Food | Aylmer, ON`,
+    title: `${SITE_NAME} — Chinese & Canadian Food | Tillsonburg, ON`,
     description: SITE_DESCRIPTION,
     images: [
       {
         url: "/Dine-1.webp",
         width: 1200,
         height: 630,
-        alt: "Super Wok Restaurant — Chinese & Canadian Cuisine in Aylmer, ON",
+        alt: "Harmony Restaurant — Chinese & Canadian Cuisine in Tillsonburg, ON",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — Chinese & Canadian Food | Aylmer, ON`,
+    title: `${SITE_NAME} — Chinese & Canadian Food | Tillsonburg, ON`,
     description: SITE_DESCRIPTION,
     images: ["/Dine-1.webp"],
   },
@@ -75,25 +81,24 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Restaurant",
-  name: "Super Wok Restaurant",
-  alternateName: "Super Wok",
+  name: "Harmony Restaurant",
+  alternateName: "Harmony",
   url: SITE_URL,
-  telephone: "+15197653184",
+  telephone: "+15198427007",
   servesCuisine: ["Chinese", "Canadian"],
   priceRange: "$$",
   hasMenu: `${SITE_URL}/menu`,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "287 Talbot St W #3",
-    addressLocality: "Aylmer",
+    streetAddress: "91 Broadway Street",
+    addressLocality: "Tillsonburg",
     addressRegion: "ON",
-    postalCode: "N5H 1J9",
     addressCountry: "CA",
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 42.7726,
-    longitude: -80.9845,
+    latitude: 42.8667,
+    longitude: -80.7333,
   },
   amenityFeature: [
     { "@type": "LocationFeatureSpecification", name: "Dine-in", value: true },
@@ -101,6 +106,28 @@ const jsonLd = {
     { "@type": "LocationFeatureSpecification", name: "Delivery", value: true },
     { "@type": "LocationFeatureSpecification", name: "Alcohol", value: true },
   ],
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Tuesday", "Wednesday", "Thursday", "Sunday"],
+      opens: "11:30",
+      closes: "20:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Friday", "Saturday"],
+      opens: "11:30",
+      closes: "21:00",
+    },
+  ],
+  areaServed: {
+    "@type": "City",
+    name: "Tillsonburg",
+    addressRegion: "ON",
+    addressCountry: "CA",
+  },
+  paymentAccepted: "Cash",
+  currenciesAccepted: "CAD",
   image: [
     `${SITE_URL}/Dine-1.webp`,
     `${SITE_URL}/Dine-2.webp`,
@@ -134,7 +161,7 @@ export default function RootLayout({
       </head>
       <body className={jakarta.variable}>
         <TooltipProvider>
-          <div className="flex w-full min-w-0 min-h-screen flex-col bg-[var(--bg)] text-left">
+          <div className="flex flex-col min-h-screen bg-[var(--bg)] text-left">
             <Navbar />
             {children}
             <Footer />

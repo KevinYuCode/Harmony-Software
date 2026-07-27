@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import {
   Dialog,
   DialogClose,
@@ -45,10 +45,21 @@ const slides = [
 ];
 
 export function DiningCarousel() {
-  const [selected, setSelected] = useState<(typeof slides)[number] | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const selected = selectedIndex !== null ? slides[selectedIndex] : null;
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (selectedIndex === null) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") setSelectedIndex((i) => ((i ?? 0) - 1 + slides.length) % slides.length);
+      if (e.key === "ArrowRight") setSelectedIndex((i) => ((i ?? 0) + 1) % slides.length);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [selectedIndex]);
 
   useEffect(() => {
     if (!api) return;
@@ -68,7 +79,7 @@ export function DiningCarousel() {
   return (
     <>
       {/* Mobile: carousel */}
-      <div className="w-full min-w-0 sm:hidden">
+      <div className="sm:hidden px-10">
         <Carousel
           opts={{ align: "start" }}
           setApi={setApi}
@@ -78,7 +89,7 @@ export function DiningCarousel() {
             {slides.map((s, i) => (
               <CarouselItem key={s.src}>
                 <button
-                  onClick={() => setSelected(s)}
+                  onClick={() => setSelectedIndex(i)}
                   aria-label={`View larger: ${s.alt}`}
                   className="relative w-full overflow-hidden rounded-xl shadow-md aspect-3/4 cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
                 >
@@ -122,7 +133,7 @@ export function DiningCarousel() {
         {slides.map((s, i) => (
           <button
             key={s.src}
-            onClick={() => setSelected(s)}
+            onClick={() => setSelectedIndex(i)}
             aria-label={`View larger: ${s.alt}`}
             className="relative w-full min-w-0 overflow-hidden rounded-xl shadow-md aspect-3/4 cursor-zoom-in focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
           >
@@ -138,9 +149,10 @@ export function DiningCarousel() {
         ))}
       </div>
 
-      <Dialog open={selected !== null} onOpenChange={(open) => { if (!open) setSelected(null); }}>
+      <Dialog open={selectedIndex !== null} onOpenChange={(open) => { if (!open) setSelectedIndex(null); }}>
         <DialogContent
           showCloseButton={false}
+          aria-describedby={undefined}
           className="w-fit sm:w-fit max-w-[calc(100vw-1.5rem)] sm:max-w-[min(92vw,44rem)] max-h-[90dvh] p-2 sm:p-3 bg-white border-border overflow-hidden"
         >
           <DialogTitle className="sr-only">
@@ -156,7 +168,7 @@ export function DiningCarousel() {
               <X aria-hidden className="h-3.5 w-3.5" />
             </Button>
           </DialogClose>
-          {selected && (
+          {selected && selectedIndex !== null && (
             <div className="relative w-fit max-w-full mx-auto">
               <Image
                 src={selected.src}
@@ -167,6 +179,24 @@ export function DiningCarousel() {
                 sizes="(max-width: 768px) 90vw, 672px"
                 priority
               />
+              <Button
+                size="icon"
+                variant="ghost"
+                onClick={() => setSelectedIndex((selectedIndex - 1 + slides.length) % slides.length)}
+                className="absolute left-1 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-black/20 text-white hover:bg-black/40 focus-visible:ring-white/70"
+                aria-label="Previous image"
+              >
+                <ChevronLeft aria-hidden className="h-5 w-5" />
+              </Button>
+              <Button
+                size="icon"
+                variant="ghost"
+                onClick={() => setSelectedIndex((selectedIndex + 1) % slides.length)}
+                className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-black/20 text-white hover:bg-black/40 focus-visible:ring-white/70"
+                aria-label="Next image"
+              >
+                <ChevronRight aria-hidden className="h-5 w-5" />
+              </Button>
             </div>
           )}
         </DialogContent>

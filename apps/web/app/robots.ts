@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://superwokrestaurant.ca/sitemap.xml",
+    sitemap: "https://harmonyrestaurant.ca/sitemap.xml",
   };
 }

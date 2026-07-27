@@ -19,3 +19,9 @@ export interface LoginResponse {
   token: string;
   employee: Employee;
 }
+
+export {
+  assignableEmployeesForOwner,
+  employeeInitials,
+  formatEmployeeName,
+} from '../lib/employee-utils'

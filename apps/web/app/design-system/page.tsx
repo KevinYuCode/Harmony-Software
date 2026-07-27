@@ -89,7 +89,7 @@ function SubSection({ title, children }: { title: string; children: React.ReactN
 
 export default function DesignSystemPage() {
   return (
-    <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="w-full max-w-[1440px] mx-auto px-3 sm:px-4 lg:px-6 py-12">
       {/* Page Header */}
       <div className="mb-16">
         <p className="font-[family-name:var(--font-label)] text-[0.85rem] font-semibold text-primary uppercase tracking-[0.08em] mb-2">
@@ -99,7 +99,7 @@ export default function DesignSystemPage() {
           Design System
         </h1>
         <p className="font-[family-name:var(--font-body)] text-[1.05rem] leading-[1.7] text-muted-foreground mt-3 max-w-[600px]">
-          A quick reference for all colours, typography, and components used across the Super Wok website.
+          A quick reference for all colours, typography, and components used across the Harmony website.
         </p>
       </div>
 
@@ -158,7 +158,7 @@ export default function DesignSystemPage() {
               <div key={t.label} className="border-b border-border/60 pb-5 last:border-0">
                 <p className="text-xs text-muted-foreground font-mono mb-2">{t.label}</p>
                 <p className={`text-secondary ${t.className}`}>
-                  Super Wok Restaurant
+                  Harmony Restaurant
                 </p>
               </div>
             ))}
@@ -365,17 +365,6 @@ export default function DesignSystemPage() {
             </h2>
             <p className="font-[family-name:var(--font-body)] text-base leading-[1.75] text-white/70">
               Body text on dark backgrounds uses white with 70% opacity for comfortable reading contrast.
-            </p>
-          </div>
-        </SubSection>
-
-        <SubSection title="CJK Display">
-          <div className="bg-[#2b2b2b] rounded-2xl p-8 inline-block">
-            <div className="text-6xl leading-[1.05] text-accent font-[family-name:var(--font-cjk-trad)] font-bold">
-              富食軒
-            </div>
-            <p className="text-sm text-white/50 mt-2 font-mono">
-              font-family: var(--font-cjk-trad) &middot; Noto Sans TC 700
             </p>
           </div>
         </SubSection>

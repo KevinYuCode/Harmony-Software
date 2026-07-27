@@ -9,8 +9,8 @@
 
 @theme {
   /* Brand colors for Tailwind utilities */
-  --color-primary: #d32f2f;
-  --color-primary-dark: #b71c1c;
+  --color-primary: #d62828;
+  --color-primary-dark: #ab2020;
   --color-primary-foreground: #ffffff;
   --color-secondary: #212121;
   --color-secondary-foreground: #ffffff;
@@ -23,7 +23,7 @@
   --color-card: #fffef5;
   --color-card-foreground: #212121;
   --color-border: #ddd2b4;
-  --color-ring: #d32f2f;
+  --color-ring: #d62828;
   --color-foreground: #212121;
   /* Page canvas = slightly deeper warm yellow (outer tone) */
   --color-background: #e8e0c4;
@@ -33,6 +33,8 @@
   /* Accordion animations */
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
+  /* Deals ticker: content is rendered twice, so -50% is exactly one full loop */
+  --animate-marquee: marquee 22s linear infinite;
 }
 
 @keyframes accordion-down {
@@ -45,13 +47,18 @@
   to { height: 0; }
 }
 
+@keyframes marquee {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
 :root {
   /* Sticky bar: matches `Navbar` — used for first-screen hero height (tighter on small screens) */
   --nav-height: 3.75rem;
 
   /* Brand: match site red + warm surfaces (shadcn tokens) */
-  --primary: #d32f2f;
-  --primary-dark: #b71c1c;
+  --primary: #d62828;
+  --primary-dark: #ab2020;
   --secondary: #212121;
   --tertiary: #ffd600;
   --neutral: #fbc02d;
@@ -101,7 +108,7 @@
 
   --input: oklch(0.922 0 0);
 
-  --ring: #d32f2f;
+  --ring: #d62828;
 
   --chart-1: oklch(0.87 0 0);
 
@@ -119,7 +126,7 @@
 
   --sidebar-foreground: #212121;
 
-  --sidebar-primary: #d32f2f;
+  --sidebar-primary: #d62828;
 
   --sidebar-primary-foreground: #ffffff;
 
@@ -129,7 +136,7 @@
 
   --sidebar-border: #ddd2b4;
 
-  --sidebar-ring: #d32f2f;
+  --sidebar-ring: #d62828;
 }
 
 @media (min-width: 768px) {

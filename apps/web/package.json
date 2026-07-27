@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint --max-warnings 0",
     "check-types": "next typegen && tsc --noEmit",
-    "deploy": "wrangler pages deploy out --project-name=super-wok-software"
+    "deploy": "wrangler pages deploy out --project-name=harmony-software"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
@@ -31,8 +31,8 @@
     "@repo/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4.2.2",
     "@types/node": "^22.15.3",
-    "@types/react": "19.2.2",
-    "@types/react-dom": "19.2.2",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
     "eslint": "^9.39.1",
     "tailwindcss": "^4.2.2",
     "typescript": "5.9.2",

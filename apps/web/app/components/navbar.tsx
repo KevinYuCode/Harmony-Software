@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect } from "react";
-import { X } from "lucide-react";
+import { FileText, X } from "lucide-react";
 import { Button } from "@harmony/ui/components/button";
+import { OrderNowButton } from "./order-now-button";
 import {
   Sidebar,
   SidebarContent,
@@ -105,9 +107,10 @@ function AppMobileSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter className="shrink-0 border-t border-sidebar-border p-4 sm:px-6 sm:py-6">
-        <Button asChild className="w-full" size="lg">
+        <Button asChild className="h-10 w-full rounded-md px-6" size="lg">
           <Link href="/menu" onClick={close}>
-            Order Now
+            <FileText className="size-4 shrink-0" strokeWidth={2} aria-hidden />
+            Menu
           </Link>
         </Button>
       </SidebarFooter>
@@ -123,18 +126,34 @@ export function Navbar() {
     >
       <AppMobileSidebar />
       <header className="sticky top-0 z-100 shrink-0 bg-[color-mix(in_srgb,var(--bg)_90%,transparent)] backdrop-blur border-b border-border">
-        <div className="w-full min-w-0 max-w-[1200px] mx-auto flex h-[var(--nav-height)] items-center justify-between gap-x-4 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto flex h-[var(--nav-height)] items-center justify-between gap-x-4 px-3 sm:px-4 lg:px-6">
           <Link
             href="/"
-            className="font-[family-name:var(--font-headline)] text-[1.5rem] font-extrabold tracking-tight whitespace-nowrap min-w-0 md:text-[2rem]"
+            className="flex items-center gap-2 font-[family-name:var(--font-headline)] text-[1.5rem] font-extrabold tracking-tight whitespace-nowrap min-w-0 md:text-[2rem]"
           >
-            <span className="text-secondary">Super</span>
-            <span className="text-primary"> Wok</span>
+            <Image
+              src="/Harmony_Logo.png"
+              alt=""
+              width={36}
+              height={36}
+              className="size-8 shrink-0 md:size-9"
+              priority
+            />
+            <span className="min-w-0 text-secondary leading-none translate-y-[3px]">Harmony Restaurant</span>
           </Link>
 
-          <div className="hidden md:block">
-            <Button asChild size="sm">
-              <Link href="/menu">Order Now</Link>
+          <div className="hidden items-center gap-x-2 md:flex">
+            <OrderNowButton
+              variant="secondary"
+              size="sm"
+              className="h-8 rounded-md px-3 text-xs"
+              iconClassName="size-3.5 shrink-0"
+            />
+            <Button asChild size="sm" className="h-8 rounded-md px-3 text-xs">
+              <Link href="/menu">
+                <FileText className="size-3.5 shrink-0" strokeWidth={2} aria-hidden />
+                Menu
+              </Link>
             </Button>
           </div>
 
