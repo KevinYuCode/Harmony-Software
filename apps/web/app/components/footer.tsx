@@ -26,12 +26,21 @@ export function Footer() {
             <p className="font-[family-name:var(--font-body)] text-[0.85rem] text-white/45">
               Fully Licensed Under L.L.B.O.
             </p>
-            <a
-              href="tel:+15198427007"
-              className="inline-block mt-2 font-[family-name:var(--font-label)] text-[1.05rem] font-semibold text-accent-muted transition-colors hover:text-accent"
-            >
-              📞 (519) 842-7007
-            </a>
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-2 font-[family-name:var(--font-label)] text-[1.05rem] font-semibold">
+              <a
+                href="tel:+15198427007"
+                className="text-accent-muted transition-colors hover:text-accent"
+              >
+                📞 (519) 842-7007
+              </a>
+              <span className="text-white/25">/</span>
+              <a
+                href="tel:+15198422493"
+                className="text-accent-muted transition-colors hover:text-accent"
+              >
+                (519) 842-2493
+              </a>
+            </div>
             <a
               href={STORE_MAP_OPEN_URL}
               target="_blank"
