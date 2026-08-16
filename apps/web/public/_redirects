@@ -1,3 +1,7 @@
 # Preserve the legacy, case-sensitive menu URLs.
 /Menu /menu 301
 /Menu/ /menu 301
+
+# Send legacy homepage URLs to the canonical homepage.
+/home.html / 301
+/default.html / 301
