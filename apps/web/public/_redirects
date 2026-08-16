@@ -1,0 +1,3 @@
+# Preserve the legacy, case-sensitive menu URLs.
+/Menu /menu 301
+/Menu/ /menu 301
