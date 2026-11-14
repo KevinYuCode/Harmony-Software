@@ -63,7 +63,7 @@ export function Footer() {
               <span>11:00 am – 8:00 pm</span>
             </div>
             <p className="font-[family-name:var(--font-body)] text-[0.75rem] text-white/35 italic">
-              *Most Mondays are closed — call ahead to confirm.
+              *Mondays typically closed — call ahead to confirm.
             </p>
           </div>
           <div>
