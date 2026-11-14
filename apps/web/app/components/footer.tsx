@@ -55,10 +55,12 @@ export function Footer() {
               Business Hours
             </h4>
             <div className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-[0.4rem] font-[family-name:var(--font-body)] text-[0.85rem] text-white/70 mb-3">
-              <span>Sun – Thu</span>
-              <span>11:30 am – 8:00 pm</span>
+              <span>Tue – Thu</span>
+              <span>12:30 pm – 8:00 pm</span>
               <span>Fri &amp; Sat</span>
-              <span>11:30 am – 9:00 pm</span>
+              <span>12:30 pm – 9:00 pm</span>
+              <span>Sun</span>
+              <span>11:00 am – 8:00 pm</span>
             </div>
             <p className="font-[family-name:var(--font-body)] text-[0.75rem] text-white/35 italic">
               *Most Mondays are closed — call ahead to confirm.
